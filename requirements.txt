@@ -1,1 +1,2 @@
 requests==2.8.1
+tinyrpc==0.5
