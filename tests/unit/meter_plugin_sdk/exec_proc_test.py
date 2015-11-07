@@ -26,7 +26,7 @@ class TestExecProc(unittest.TestCase):
 
     def test_constructor(self):
         e = ExecProc()
-        self.assertIsNotNone(e is not None, 'Instance is None')
+        self.assertTrue(e is not None, 'Instance is None')
 
     def test_missing_command(self):
         try:
