@@ -3,6 +3,8 @@ TrueSight Pulse Meter Plugin SDK for Python
 
 This provides a framework for the development of the TrueSight Pulse Meter Plugins
 
+[![Build Status](https://travis-ci.org/boundary/meter-plugin-sdk-python.svg?branch=develop)](https://travis-ci.org/boundary/meter-plugin-sdk-python)
+
 
 Measurement Transports
 ----------------------
