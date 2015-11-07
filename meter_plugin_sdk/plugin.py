@@ -14,8 +14,8 @@
 # limitations under the License.
 
 
-from configuration import Configuration
-from dispatcher import Dispatcher
+from meter_plugin_sdk import Configuration
+from meter_plugin_sdk import Dispatcher
 import logging
 import sys
 

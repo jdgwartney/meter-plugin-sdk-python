@@ -29,7 +29,7 @@ class TestConfiguration(unittest.TestCase):
 
     def test_constructor(self):
         conf = Configuration(self.filename)
-        self.assertIsNotNone(conf)
+        self.assertIsNotNone(conf is not None)
 
     def test_entry_count(self):
         self.conf.load()

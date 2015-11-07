@@ -16,37 +16,47 @@
 from subprocess import Popen,PIPE
 import shlex
 import logging
-from string import replace
+
 
 class ExecProc:
     
     def __init__(self):
-        self.command = None
-        self.debug = False
-        
-    def setDebug(self,debug):
-        self.debug = debug
-        
-    def setCommand(self,command):
+        self._command = None
+        self._debug = False
+
+    @property
+    def debug(self):
+        return self._debug
+
+    @debug.setter
+    def debug(self, debug):
+        self._debug = debug
+
+    @property
+    def command(self):
+        return self._command
+
+    @command.setter
+    def command(self, command):
         if type(command) != str:
             raise ValueError
-        self.command = command
+        self._command = command
         
     def execute(self):
-        if self.command == None:
+        if self.command is None:
             raise ValueError
         args = shlex.split(self.command)
-        if self.debug == True:
-            logging.info("command=\"%s\"",args)
-        p = Popen(args,stdout=PIPE)
-        o,e = p.communicate()
-        if self.debug == True:
+        if self.debug:
+            logging.info("command=\"{0}\"".format(args))
+        p = Popen(args, stdout=PIPE)
+        o, e = p.communicate()
+        if self.debug:
             logging.info("before: " + ':'.join(x.encode('hex') for x in o))
         # Remove carriage returns from output
-        o = replace(o,"\r","")
-        if self.debug == True:
+        o = o.replace('\r', '')
+        if self.debug:
             logging.info("after: " + ':'.join(x.encode('hex') for x in o))
-        if self.debug == True:
+        if self.debug:
             logging.info("output=\"%s\"",o)
             logging.info(':'.join(x.encode('hex') for x in o))
         return o

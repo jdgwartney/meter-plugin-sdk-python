@@ -16,7 +16,7 @@
 import random
 import platform
 from threading import Thread, Lock
-from metric_thread import MetricThread
+from meter_plugin_sdk import MetricThread
 
 
 class Dispatcher(object):
@@ -46,7 +46,7 @@ class Dispatcher(object):
         items = self.config.items()
         for i in items:
             #           print(i.getName())
-            thread = MetricThread(i, stdoutmutex)  # make/ start 10 threads
+            thread = MetricThread(item=i, mutex=stdoutmutex)  # make/ start 10 threads
             thread.start()  # starts run method in a thread
             threads.append(thread)
         for thread in threads:

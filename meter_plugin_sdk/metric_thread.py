@@ -13,27 +13,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from threading import Thread, Lock
+from threading import Thread
 import time
-from metric_item import MetricItem
-from exec_proc import ExecProc
+from meter_plugin_sdk import ExecProc
 from sys import stdout
 
-stdoutmutex = Lock()
 
 class MetricThread(Thread):
-    
-    def __init__(self,item,mutex):
-        Thread.__init__(self,name=item.getName())
+    def __init__(self, item, mutex):
+        Thread.__init__(self, name=item.name)
         self.setDaemon(True)
         self.mutex = mutex
         self.pollingInterval = item.getPollingInterval()
-        self.name = item.getName()
+        self.name = item.name
         self.proc = ExecProc()
-        self.proc.setCommand(item.getCommand())
-        self.proc.setDebug(item.getDebug())
-        
-    def run(self): # run provides thread logic
+        self.proc.command = item.command
+        self.proc.debug = item.getDebug
+
+    def run(self):  # run provides thread logic
         while True:
             output = self.proc.execute()
             with self.mutex:
