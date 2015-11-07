@@ -13,41 +13,52 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class MetricItem:
-    
+
+class MetricItem(object):
+
     def __init__(self):
-        self.name = ""
-        self.pollInterval = 5
-        self.command = ""
-    
-    def setName(self, name):
+        self._name = ""
+        self._poll_interval = 5
+        self._command = ""
+        self._debug = False
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
         if type(name) != str:
             raise ValueError
-        self.name = name
-        
-    def getName(self):
-        return self.name
-        
-    def setPollingInterval(self, pollInterval):
-        if type(pollInterval) != int:
+        self._name = name
+
+    @property
+    def poll_interval(self):
+        return self._poll_interval
+
+    @poll_interval.setter
+    def poll_interval(self, poll_interval):
+        if type(poll_interval) != int:
             raise ValueError
-        self.pollInterval = pollInterval
-        
-    def getPollingInterval(self):
-        return self.pollInterval
-    
-    def setDebug(self,debug):
+        self._poll_interval = poll_interval
+
+    @property
+    def debug(self):
+        return self._debug
+
+    @debug.setter
+    def debug(self, debug):
         if type(debug) != bool:
             raise ValueError
-        self.debug = debug
-        
-    def getDebug(self):
-        return self.debug
-        
-    def setCommand(self, command):
+        self._debug = debug
+
+    @property
+    def command(self):
+        return self._command
+
+    @command.setter
+    def command(self, command):
         if type(command) != str:
             raise ValueError
-        self.command = command
-        
-    def getCommand(self):
-        return self.command
+        self._command = command
+

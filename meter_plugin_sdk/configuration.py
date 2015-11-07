@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# Copyright 2014 Boundary, Inc.
+# Copyright 2015 BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,6 +14,7 @@
 
 import json
 from pprint import pprint
+
 try:
     import StringIO
 except ImportError:
@@ -22,39 +22,40 @@ except ImportError:
 
 from metric_item import MetricItem
 
+
 class Configuration:
-    
-    def __init__(self,path):
+    def __init__(self, path):
         self.config = []
         self.path = path
-    
-    def setPath(self, path):
+        self.json_data = None
+        self.data = None
+
+    def set_path(self, path):
         self.path = path
-        
-    def getEntryCount(self):
+
+    def get_entry_count(self):
         count = 0
-        if self.data != None:
-            count = len(self.data["items"])
+        if self.data is not None:
+            count = len(self.data['items'])
         return count
-    
+
     def load(self):
         self.json_data = open(self.path)
         self.data = json.load(self.json_data)
         # Loop over the items and put into list
-        metricItems = self.data["items"]
-        for i in metricItems:
+        metric_items = self.data['items']
+        for i in metric_items:
             item = MetricItem()
-            item.setName(str(i["name"]))
-            item.setPollingInterval(int(i["pollInterval"]))
-            item.setCommand(str(i["command"]))
-            item.setDebug(bool(i["debug"]))
+            item.name = str(i['name'])
+            item.polling_interval = int(i['pollInterval'])
+            item.command = str(i['command'])
+            item.debug = bool(i['debug'])
             self.config.append(item)
-        
+
     def __str__(self):
         output = StringIO.StringIO()
-        pprint(self.data,stream=output)
+        pprint(self.data, stream=output)
         return output.getvalue()
-    
-    def getItems(self):
-        return self.config
 
+    def get_items(self):
+        return self.config

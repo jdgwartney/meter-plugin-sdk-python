@@ -14,10 +14,10 @@
 # limitations under the License.
 
 import unittest
-from metric_item import MetricItem
+from meter_plugin_sdk import MetricItem
+
 
 class TestMetricItem(unittest.TestCase):
-
     def setUp(self):
         unittest.TestCase.setUp(self)
         m = MetricItem();
@@ -25,38 +25,39 @@ class TestMetricItem(unittest.TestCase):
     def tearDown(self):
         unittest.TestCase.tearDown(self)
 
-    def testConstructor(self):
+    def test_constructor(self):
         m = MetricItem()
-        
-    def testName(self):
+
+    def test_name(self):
         m = MetricItem();
-        m.setName("foo")
-        self.assertEquals(m.getName(),"foo","Names not equal")
-        
-    def testNameType(self):
+        m.name = 'foo'
+        self.assertEquals(m.name, 'foo', 'Names not equal')
+
+    def test_name_type(self):
         m = MetricItem();
-        m.setName("foo")
-        self.assertTrue(type(m.getName()) == str,"Name is not a string")
-        
-    def testPollInterval(self):
-        m = MetricItem();
-        m.setPollingInterval(100)
-        self.assertEquals(m.getPollingInterval(),100,"Poll intervals not equal")
-        
-    def testPollIntervalType(self):
-        m = MetricItem();
-        m.setPollingInterval(1000)
-        self.assertTrue(type(m.getPollingInterval()) == int)
-        
-    def testPollInterval(self):
-        m = MetricItem();
-        m.setDebug(True)
-        self.assertEquals(m.getDebug(),True,"Debug not equal")
-        
-    def testCommand(self):
+        m.name = 'foo'
+        self.assertTrue(type(m.name) == str, 'Name is not a string')
+
+    def test_poll_interval(self):
         m = MetricItem()
-        m.setCommand("snafu")
-        self.assertEquals(m.getCommand(),"snafu","Commands not equal")
+        m.poll_interval = 100
+        self.assertEquals(m.poll_interval, 100, 'Poll intervals not equal')
+
+    def test_poll_interval_type(self):
+        m = MetricItem()
+        m.poll_interval = 1000
+        self.assertTrue(type(m.poll_interval) == int)
+
+    def test_poll_interval_debug(self):
+        m = MetricItem()
+        m.debug = True
+        self.assertEquals(m.debug, True, 'Debug not equal')
+
+    def test_command(self):
+        m = MetricItem()
+        m.command = 'snafu'
+        self.assertEquals(m.command, 'snafu', 'Commands not equal')
+
 
 if __name__ == '__main__':
     unittest.main()

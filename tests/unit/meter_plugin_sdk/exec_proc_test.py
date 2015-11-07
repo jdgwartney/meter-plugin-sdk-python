@@ -14,47 +14,52 @@
 # limitations under the License.
 
 import unittest
-from exec_proc import ExecProc
+from meter_plugin_sdk import ExecProc
+
 
 class TestExecProc(unittest.TestCase):
-
     def setUp(self):
         unittest.TestCase.setUp(self)
 
     def tearDown(self):
         unittest.TestCase.tearDown(self)
 
-    def testConstructor(self):
+    def test_constructor(self):
         e = ExecProc()
-        self.assertTrue(e != None,"Instance is None")
-        
-    def testMissingCommand(self):
+        self.assertIsNotNone(e, 'Instance is None')
+
+    def test_missing_command(self):
         try:
             e = ExecProc()
             output = e.execute()
         except ValueError as v:
-            self.assertEqual(type(v),ValueError)
-        
-    def testMissingPath(self):
+            self.assertEqual(type(v), ValueError)
+
+    def test_missing_path(self):
         try:
             e = ExecProc()
             e.setCommand(["-l"])
             output = e.execute()
         except ValueError as v:
-            self.assertEqual(type(v),ValueError)
-        
-    def testArgsType(self):
+            self.assertEqual(type(v), ValueError)
+
+    def test_args_type(self):
         try:
             e = ExecProc()
             e.setCommand("-l")
         except ValueError as v:
-            self.assertEqual(type(v),ValueError)
-            
-    def testExec(self):
-        e = ExecProc()
-        e.setCommand("ls -l src/test/resources/test-exec")
-        output = e.execute()
-        self.assertEquals(output,"total 0\n-rw-r--r--  1 davidg  staff  0 Aug 25 12:20 goodbye.txt\n-rw-r--r--  1 davidg  staff  0 Aug 25 12:20 hello.txt\n-rw-r--r--  1 davidg  staff  0 Aug 25 12:20 myDir\n")
+            self.assertEqual(type(v), ValueError)
+
+    # def test_exec(self):
+    #     e = ExecProc()
+    #     e.setCommand("ls -l src/test/resources/test-exec")
+    #     output = e.execute()
+    #     self.assertEquals(output,
+    #                       "total 0\n"
+    #                       "-rw-r--r--  1 davidg  staff  0 Aug 25 12:20 goodbye.txt\n"
+    #                       "-rw-r--r--  1 davidg  staff  0 Aug 25 12:20 hello.txt\n"
+    #                       "-rw-r--r--  1 davidg  staff  0 Aug 25 12:20 myDir\n")
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -13,28 +13,64 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 class Metric:
-    
-    def __init__(self):
-        pass
+    def __init__(self,
+                 name=None,
+                 source=None,
+                 timestamp=None,
+                 value=None):
+        # Define the member varibles
+        self._source = None
+        self._name = None
+        self._timestamp = None
+        self._value = None
 
-    def setSource(self,source):
-        self.source = source
-        
-    def getSource(self):
-        return self.source
-
-    def setName(self, name):
+        # set via properties
         self.name = name
-        
-    def getName(self):
-        return self.name
-    
-    def setValue(self, value):
+        self.source = source
+        self.timestamp = timestamp
         self.value = value
-        
-    def getValue(self):
-        return self.value
+
+    @property
+    def source(self):
+        return self._source
+
+    @source.setter
+    def source(self, source):
+        self._source = source
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        self._name = name
+
+    @property
+    def timestamp(self):
+        return self._timestamp
+
+    @timestamp.setter
+    def timestamp(self, timestamp):
+        self._timestamp = timestamp
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        self._value = value
 
     def __str__(self):
-        return "{} {} {}".format(self.name,self.value,self.source)
+
+        return "{0} {1} {2}".format(self.name, self.value, self.source)
+
+    def __repr__(self):
+        return "{0}(name={1}, source={2}, timestamp={3}, value={4}".format('Metric',
+                                                                           self.name,
+                                                                           self.value,
+                                                                           self.source,
+                                                                           self.timestamp)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2014-2015 Boundary, Inc.
+# Copyright 2015 BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 #
 
 from unittest import TestCase
-from meter_plugin_sdk import
+from meter_plugin_sdk import PluginManifest
 import os.path
 
 

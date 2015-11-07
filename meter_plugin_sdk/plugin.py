@@ -19,7 +19,9 @@ from dispatcher import Dispatcher
 import logging
 import sys
 
-logging.basicConfig(stream=sys.stderr,format='thread: %(threadName)s, file: %(filename)s, msg: %(message)s',level=logging.DEBUG)
+logging.basicConfig(stream=sys.stderr,
+                    format='thread: %(threadName)s, file: %(filename)s, msg: %(message)s', level=logging.DEBUG)
+
 
 class Plugin:
     
@@ -33,4 +35,4 @@ class Plugin:
     
     def run(self):
         self.dispatcher.run()
-            
+

@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# Copyright 2014 Boundary, Inc.
+# Copyright BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,32 +13,28 @@
 # limitations under the License.
 
 import unittest
-from metric import Metric
+from meter_plugin_sdk import Metric
+
 
 class TestMetric(unittest.TestCase):
-
     def setUp(self):
         unittest.TestCase.setUp(self)
 
     def tearDown(self):
         unittest.TestCase.tearDown(self)
 
-    def testAttributes(self):
+    def test_attributes(self):
         metric = Metric()
-        metric.setName("foo")
-        metric.setValue(10)
-        metric.setSource("localhost")
-        self.assertEqual(metric.getName(), "foo", "Name does not match")
-        self.assertEqual(metric.getValue(),10, "Values does nto match")
-        self.assertEqual(metric.getSource(), "localhost", "Source does not match")
-        
-    def testString(self):
-        metric = Metric()
-        metric.setName("bar")
-        metric.setValue(100)
-        metric.setSource("snafu")
-        print(str(self))
-        self.assertEqual(str(metric), "bar 100 snafu", "String does not match")
+        metric.name = 'foo'
+        metric.value = 10
+        metric.source = 'localhost'
+        self.assertEqual(metric.name, 'foo', 'Name does not match')
+        self.assertEqual(metric.value, 10, 'Values does nto match')
+        self.assertEqual(metric.source, 'localhost', 'Source does not match')
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_string(self):
+        metric = Metric()
+        metric.name = 'bar'
+        metric.value = 100
+        metric.source = 'snafu'
+        self.assertEqual(str(metric), 'bar 100 snafu', 'String does not match')
