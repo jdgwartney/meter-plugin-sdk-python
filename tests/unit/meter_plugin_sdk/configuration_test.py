@@ -15,7 +15,7 @@
 
 import unittest
 import os
-from meter_plugin_sdk import Configuration
+from meterplugin import Configuration
 
 
 class TestConfiguration(unittest.TestCase):

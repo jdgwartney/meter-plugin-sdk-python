@@ -14,7 +14,7 @@
 # limitations under the License.
 
 import unittest
-from meter_plugin_sdk import MetricItem
+from meterplugin import MetricItem
 
 
 class TestMetricItem(unittest.TestCase):

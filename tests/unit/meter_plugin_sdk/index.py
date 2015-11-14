@@ -14,7 +14,7 @@
 # limitations under the License.
 
 
-from meter_plugin_sdk import Plugin
+from meterplugin import Plugin
 
 
 def main():

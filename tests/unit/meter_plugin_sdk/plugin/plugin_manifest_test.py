@@ -16,7 +16,7 @@
 #
 
 from unittest import TestCase
-from meter_plugin_sdk import PluginManifest
+from meterplugin import PluginManifest
 import os.path
 
 

@@ -14,7 +14,7 @@
 # limitations under the License.
 
 import unittest
-from meter_plugin_sdk import ExecProc
+from meterplugin import ExecProc
 
 
 class TestExecProc(unittest.TestCase):

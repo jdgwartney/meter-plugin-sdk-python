@@ -20,7 +20,7 @@ try:
 except ImportError:
     from io import StringIO
 
-from meter_plugin_sdk import MetricItem
+from meterplugin import MetricItem
 
 
 class Configuration:

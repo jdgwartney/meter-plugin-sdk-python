@@ -15,7 +15,7 @@
 
 from threading import Thread
 import time
-from meter_plugin_sdk import ExecProc
+from meterplugin import ExecProc
 from sys import stdout
 
 

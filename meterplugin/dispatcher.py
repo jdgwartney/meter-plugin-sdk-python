@@ -16,7 +16,7 @@
 import random
 import platform
 from threading import Thread, Lock
-from meter_plugin_sdk import MetricThread
+from meterplugin import MetricThread
 
 
 class Dispatcher(object):
