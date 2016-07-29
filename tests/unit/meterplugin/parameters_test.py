@@ -15,20 +15,21 @@
 
 import unittest
 import os
-from meterplugin import Configuration
+from meterplugin import PluginParameters
 
 
 class TestConfiguration(unittest.TestCase):
+
     def setUp(self):
-        unittest.TestCase.setUp(self)
+        super(TestConfiguration, self).setUp()
         self.filename = os.path.join(os.path.dirname(__file__), 'test_param.json')
-        self.conf = Configuration(self.filename)
+        self.conf = PluginParameters(self.filename)
 
     def tearDown(self):
-        unittest.TestCase.tearDown(self)
+        super(TestConfiguration, self).tearDown()
 
     def test_constructor(self):
-        conf = Configuration(self.filename)
+        conf = PluginParameters(self.filename)
         self.assertTrue(conf is not None)
 
     def test_entry_count(self):

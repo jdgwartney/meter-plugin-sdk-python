@@ -14,7 +14,7 @@
 # limitations under the License.
 
 
-from meterplugin import Configuration
+from meterplugin import PluginParameters
 from meterplugin import Dispatcher
 import logging
 import sys
@@ -26,13 +26,10 @@ logging.basicConfig(stream=sys.stderr,
 class Plugin:
     
     def __init__(self, path):
-        self.config = Configuration(path)
+        self.parameters = PluginParameters(path)
         self.dispatcher = Dispatcher()
         self.measurement_output = None
         self.event_output = None
-
-    def load_configuration(self):
-        pass
 
     def set_measurement_output(self, output):
         self.measurement_output = output
@@ -41,9 +38,18 @@ class Plugin:
         self.event_output = output
         
     def initialize(self):
-        self.config.load()
-        self.dispatcher.config = self.config
-    
+        self.parameters.load()
+        self.dispatcher.parameters = self.parameters
+
+    def plugin_initialize(self):
+        pass
+
+    def plugin_start(self):
+        pass
+
+    def collector_initialize(self):
+        pass
+
     def run(self):
         self.dispatcher.run()
 

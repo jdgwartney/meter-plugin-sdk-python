@@ -19,18 +19,21 @@ class Metric:
                  name=None,
                  source=None,
                  timestamp=None,
-                 value=None):
+                 value=None,
+                 _type=None):
         # Define the member varibles
         self._source = None
         self._name = None
         self._timestamp = None
         self._value = None
+        self._type = None
 
         # set via properties
         self.name = name
         self.source = source
         self.timestamp = timestamp
         self.value = value
+        self.type = _type
 
     @property
     def source(self):
@@ -64,13 +67,21 @@ class Metric:
     def value(self, value):
         self._value = value
 
-    def __str__(self):
+    @property
+    def type(self):
+        return self._type
 
+    @type.setter
+    def type(self, _type):
+        self._type = _type
+
+    def __str__(self):
         return "{0} {1} {2}".format(self.name, self.value, self.source)
 
     def __repr__(self):
-        return "{0}(name={1}, source={2}, timestamp={3}, value={4}".format('Metric',
-                                                                           self.name,
-                                                                           self.value,
-                                                                           self.source,
-                                                                           self.timestamp)
+        return "{0}(name={1}, source={2}, timestamp={3}, value={4}, type='{5}'".format('Metric',
+                                                                                       self.name,
+                                                                                       self.value,
+                                                                                       self.source,
+                                                                                       self.timestamp,
+                                                                                       self.type)

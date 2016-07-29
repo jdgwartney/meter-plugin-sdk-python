@@ -13,17 +13,19 @@
 # limitations under the License.
 
 import json
+from meterplugin import MetricItem
 from pprint import pprint
+import logging
 
 try:
     import StringIO
 except ImportError:
     from io import StringIO
 
-from meterplugin import MetricItem
+logger = logging.getLogger(__name__)
 
 
-class Configuration:
+class PluginParameters:
 
     def __init__(self, path):
         self.config = []
@@ -37,6 +39,7 @@ class Configuration:
         :param path:
         :return:
         """
+        logger.debug('set_path(\"{0}\"', path)
         self.path = path
 
     def get_entry_count(self):

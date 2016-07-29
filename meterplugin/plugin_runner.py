@@ -18,9 +18,6 @@ from meterplugin import MeasurementSinkStandardOut
 from meterplugin import EventSinkStandardOut
 import sys
 
-from pydoc import locate
-
-
 # def my_excepthook(type, value, traceback):
 #    sys.stderr.write("Unhandled error: {0}, {1}\n".format(type, value))
 
@@ -41,14 +38,15 @@ class PluginRunner(object):
     def run(self):
         module = __import__(self.module_name)
         class_ = getattr(module, self.class_name)
-        plugin = class_("")
-        plugin.load_configuration()
-        plugin.set_measurement_output(MeasurementSinkStandardOut())
-        plugin.set_event_output(EventSinkStandardOut())
+        meter_plugin = class_("")
+        meter_plugin.initialize()
+        meter_plugin.load_configuration()
+        meter_plugin.set_measurement_output(MeasurementSinkStandardOut())
+        meter_plugin.set_event_output(EventSinkStandardOut())
 
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         PluginRunner.usage()
-    plugin = PluginRunner()
-    plugin.run()
+    plugin_runner = PluginRunner()
+    plugin_runner.run()

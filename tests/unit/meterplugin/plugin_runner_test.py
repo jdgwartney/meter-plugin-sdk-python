@@ -25,7 +25,7 @@ class TestPluginRunner(unittest.TestCase):
         module_path = os.path.dirname(os.path.abspath(__file__))
         sys.path.append(module_path)
 
-    # @unittest.skip("skipping test_constructor()")
+    @unittest.skip("skipping test_constructor()")
     def test_constructor(self):
         plugin_runner = PluginRunner('test_plugin', 'TestPlugin')
         plugin_runner.run()

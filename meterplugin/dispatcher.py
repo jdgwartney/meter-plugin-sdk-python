@@ -21,15 +21,15 @@ from meterplugin import MetricThread
 
 class Dispatcher(object):
     def __init__(self):
-        self._config = None
+        self._parameters = None
 
     @property
-    def config(self):
-        return self._config
+    def parameters(self):
+        return self._parameters
 
-    @config.setter
-    def config(self, config):
-        self._config = config
+    @parameters.setter
+    def parameters(self, parameters):
+        self._parameters = parameters
 
 #    def print_metric(self, metric):
 #        print(metric + " " + str(random.randrange(0, 99)) + " " + platform.node())
@@ -42,7 +42,7 @@ class Dispatcher(object):
     def run(self):
         stdoutmutex = Lock()  # same as thread.allocate_lock()
         threads = []
-        items = self.config.items()
+        items = self.parameters.items()
         for i in items:
             # print(i.getName())
             thread = MetricThread(item=i, mutex=stdoutmutex)  # make/ start 10 threads

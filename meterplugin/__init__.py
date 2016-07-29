@@ -2,7 +2,7 @@ __version__ = '0.2.0'
 from . exec_proc import ExecProc
 from . metric import Metric
 from . metric_item import MetricItem
-from . configuration import Configuration
+from . parameters import PluginParameters
 from . metric_thread import MetricThread
 from . dispatcher import Dispatcher
 from . plugin import Plugin
