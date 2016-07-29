@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # Copyright 2016 BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import unittest
+from meterplugin import CollectorDispatcher
 
-class CollectorDispatcher(object):
-    def __init__(self):
-        pass
+
+class TestCollectorDispatch(unittest.TestCase):
+
+    def test_constructor(self):
+        dispatcher = CollectorDispatcher()

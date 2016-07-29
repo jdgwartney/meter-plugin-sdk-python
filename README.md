@@ -12,8 +12,8 @@ Measurement Transports
 The SDK supports sending measurements to Pulse via 3 different methods:
 
 - Standard Out
-- Meter RPC
-- Measurement API
+- Meter RPC (Future)
+- Measurement API (Future)
 
 ### Standard Out
 

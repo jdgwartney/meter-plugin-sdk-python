@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # Copyright 2016 BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,6 +13,5 @@
 # limitations under the License.
 
 
-class CollectorDispatcher(object):
-    def __init__(self):
-        pass
+class EventSink(object):
+    pass

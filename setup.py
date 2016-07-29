@@ -1,12 +1,13 @@
 from distutils.core import setup
+from meterplugin import __version__
 
 setup(
-    name='meter-plugin-sdk',
-    version='0.1.0',
+    name='meterplugin',
+    version=__version__,
     url="http://github.io/boundary/meter-plugin-sdk-python",
     author='David Gwartney',
     author_email='david_gwartney@bmc.com',
-    packages=['meterpluginsdk', ],
+    packages=['meterplugin', ],
     scripts=[
     ],
     package_data={'meterplugin': ['templates/*']},

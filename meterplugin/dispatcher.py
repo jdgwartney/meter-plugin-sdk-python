@@ -22,7 +22,6 @@ from meterplugin import MetricThread
 class Dispatcher(object):
     def __init__(self):
         self._config = None
-        pass
 
     @property
     def config(self):
@@ -32,31 +31,31 @@ class Dispatcher(object):
     def config(self, config):
         self._config = config
 
-    def print_metric(self, metric):
-        print(metric + " " + str(random.randrange(0, 99)) + " " + platform.node())
+#    def print_metric(self, metric):
+#        print(metric + " " + str(random.randrange(0, 99)) + " " + platform.node())
 
-    def print_output(self):
-        self.print_metric("LOAD_1_MINUTE")
-        self.print_metric("LOAD_5_MINUTE")
-        self.print_metric("LOAD_15_MINUTE")
+#    def print_output(self):
+#        self.print_metric("LOAD_1_MINUTE")
+#        self.print_metric("LOAD_5_MINUTE")
+#        self.print_metric("LOAD_15_MINUTE")
 
     def run(self):
         stdoutmutex = Lock()  # same as thread.allocate_lock()
         threads = []
         items = self.config.items()
         for i in items:
-            #           print(i.getName())
+            # print(i.getName())
             thread = MetricThread(item=i, mutex=stdoutmutex)  # make/ start 10 threads
             thread.start()  # starts run method in a thread
             threads.append(thread)
         for thread in threads:
             thread.join()  # wait for thread exits
 
-    def execute(self, execute_process, inputs):
-        pool = Pool(processes=len(inputs))
-        print(type(execute_process))
-        print(type(inputs))
-        print(type(len(inputs)))
-        results = pool.map(execute_process, inputs)
-        pool.close()
-        return all(results)
+#    def execute(self, execute_process, inputs):
+#        pool = Pool(processes=len(inputs))
+#        print(type(execute_process))
+#        print(type(inputs))
+#        print(type(len(inputs)))
+#        results = pool.map(execute_process, inputs)
+#        pool.close()
+#        return all(results)

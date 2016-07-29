@@ -25,13 +25,24 @@ logging.basicConfig(stream=sys.stderr,
 
 class Plugin:
     
-    def __init__(self,path):
+    def __init__(self, path):
         self.config = Configuration(path)
         self.dispatcher = Dispatcher()
+        self.measurement_output = None
+        self.event_output = None
+
+    def load_configuration(self):
+        pass
+
+    def set_measurement_output(self, output):
+        self.measurement_output = output
+
+    def set_event_output(self, output):
+        self.event_output = output
         
     def initialize(self):
         self.config.load()
-        self.dispatcher.setConfig(self.config)
+        self.dispatcher.config = self.config
     
     def run(self):
         self.dispatcher.run()

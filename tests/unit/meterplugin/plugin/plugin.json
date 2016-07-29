@@ -1,8 +1,8 @@
 {
-  "name": "Boundary README Test",
+  "name": "TrueSight Pulse Test",
   "version": "2.0",
   "tags": "meter",
-  "description": "Example plugin.json for testing README.md generation",
+  "description": "Example plugin.json for testing",
   "icon": "icon.png",
   "command": "node index.js",
   "command_lua": "boundary-meter init.lua",
@@ -10,7 +10,7 @@
   "postExtract_lua": "",
   "ignore": "node_modules",
   "metrics": [
-    "BOUNDARY_README_METRIC"
+    "PULSE_TEST_METRIC"
   ],
   "paramArray": {
     "itemTitle": [

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # Copyright 2016 BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import unittest
+import sys
+import os
 
-class CollectorDispatcher(object):
-    def __init__(self):
-        pass
+from meterplugin import PluginRunner
+
+
+class TestPluginRunner(unittest.TestCase):
+
+    def setUp(self):
+        module_path = os.path.dirname(os.path.abspath(__file__))
+        sys.path.append(module_path)
+
+    # @unittest.skip("skipping test_constructor()")
+    def test_constructor(self):
+        plugin_runner = PluginRunner('test_plugin', 'TestPlugin')
+        plugin_runner.run()

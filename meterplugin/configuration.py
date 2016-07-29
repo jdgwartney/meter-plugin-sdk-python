@@ -24,6 +24,7 @@ from meterplugin import MetricItem
 
 
 class Configuration:
+
     def __init__(self, path):
         self.config = []
         self.path = path
@@ -31,9 +32,18 @@ class Configuration:
         self.data = None
 
     def set_path(self, path):
+        """
+        Sets the path to the configuration file param.json
+        :param path:
+        :return:
+        """
         self.path = path
 
     def get_entry_count(self):
+        """
+        Returns the number of configuration items
+        :return:
+        """
         count = 0
         if self.data is not None:
             count = len(self.data['items'])
@@ -43,14 +53,24 @@ class Configuration:
         self.json_data = open(self.path)
         self.data = json.load(self.json_data)
         # Loop over the items and put into list
-        metric_items = self.data['items']
-        for i in metric_items:
-            item = MetricItem()
-            item.name = str(i['name'])
-            item.polling_interval = int(i['pollInterval'])
-            item.command = str(i['command'])
-            item.debug = bool(i['debug'])
-            self.config.append(item)
+        config_items = self.data['items']
+        for item in config_items:
+            self.handle_config_item(self.config, item)
+
+    def handle_config_item(self, config, item):
+        """
+        Derived classes need to override this method to handle their specific
+        configuration items
+        :param config:
+        :param item:
+        :return:
+        """
+        metric_item = MetricItem()
+        metric_item.name = str(item['name'])
+        metric_item.polling_interval = int(item['pollInterval'])
+        metric_item.command = str(item['command'])
+        metric_item.debug = bool(item['debug'])
+        config.append(metric_item)
 
     def __str__(self):
         output = StringIO.StringIO()

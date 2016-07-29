@@ -1,1 +1,1 @@
-__author__ = 'dgwartne'
+from tests.unit.meterplugin.test_plugin import TestPlugin

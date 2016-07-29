@@ -14,6 +14,6 @@
 # limitations under the License.
 
 
-class CollectorDispatcher(object):
-    def __init__(self):
-        pass
+class MeasurementSink(object):
+    pass
+

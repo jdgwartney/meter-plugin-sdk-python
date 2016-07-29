@@ -84,7 +84,6 @@ class PluginManifest():
 
     @property
     def name(self):
-        logging.debug(self.manifest)
         return self.manifest['name']
 
     @property
