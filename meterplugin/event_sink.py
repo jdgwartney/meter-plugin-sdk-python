@@ -15,3 +15,7 @@
 
 class EventSink(object):
     pass
+
+
+class EventSinkStandardOut(EventSink):
+    pass

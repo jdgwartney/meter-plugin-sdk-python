@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright 2016 BMC Software, Inc.
+# Copyright 2014 Boundary, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from meterplugin import EventSinkStandardOut
+from meterplugin import MeasurementSinkStandardOut
 
-class CollectorDispatcher(object):
+
+class Collector(object):
+
     def __init__(self):
+        self.event_output = EventSinkStandardOut()
+        self.measurement_output = MeasurementSinkStandardOut()
+
+    def initialize(self, parameters):
         pass
+
+    def start(self, parameters):
+        pass
+
+    def collect(self):
+        pass
+

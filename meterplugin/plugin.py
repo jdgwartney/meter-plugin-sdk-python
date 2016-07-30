@@ -28,26 +28,18 @@ class Plugin:
     def __init__(self, path):
         self.parameters = PluginParameters(path)
         self.dispatcher = Dispatcher()
-        self.measurement_output = None
-        self.event_output = None
 
-    def set_measurement_output(self, output):
-        self.measurement_output = output
-
-    def set_event_output(self, output):
-        self.event_output = output
-        
-    def initialize(self):
+    def _initialize(self):
         self.parameters.load()
         self.dispatcher.parameters = self.parameters
 
     def plugin_initialize(self):
         pass
 
-    def plugin_start(self):
+    def start(self):
         pass
 
-    def collector_initialize(self):
+    def plugin_create_collector(self, parameters):
         pass
 
     def run(self):
