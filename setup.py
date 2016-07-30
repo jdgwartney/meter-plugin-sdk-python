@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup
 from meterplugin import __version__
 
 setup(
@@ -8,14 +8,15 @@ setup(
     author='David Gwartney',
     author_email='david_gwartney@bmc.com',
     packages=['meterplugin', ],
-    scripts=[
-    ],
+    entry_points={
+        'console_scripts': [
+            'plugin-runner = meterplugin.plugin_runner:main',
+        ],
+    },
     package_data={'meterplugin': ['templates/*']},
     license='LICENSE',
     description='TrueSight Pulse Meter Plugin SDK for Python',
     long_description=open('README.txt').read(),
-    install_requires=[
-        "tinyrpc",
-        "tspapi",
-    ],
+    install_requires=['tinyrpc', 'tspapi',],
+    setup_requires=['tinyrpc', 'tspapi', ],
 )
