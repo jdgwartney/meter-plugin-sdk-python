@@ -1,18 +1,31 @@
-from meterplugin.measurement_sink_standard_out import MeasurementSinkStandardOut
+# Copyright 2016 BMC Software, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+from meterplugin.exec_proc import ExecProc
+
+from meterplugin.event_sink import EventSink
+from meterplugin.event_sink import EventSinkStandardOut
+
+from meterplugin.measurement import MeasurementSink
+from meterplugin.measurement import MeasurementSinkAPI
+from meterplugin.measurement import MeasurementSinkRPC
+from meterplugin.measurement import MeasurementSinkStandardOut
 
 from meterplugin.collector import Collector
-from meterplugin.collector_dispatcher import CollectorDispatcher
-from meterplugin.event_sink import EventSink
-from meterplugin.event_sink_standard_out import EventSinkStandardOut
-from meterplugin.measurement_sink import MeasurementSink
 from meterplugin.plugin_runner import PluginRunner
-from . dispatcher import Dispatcher
-from . exec_proc import ExecProc
-from . metric import Metric
-from . metric_item import MetricItem
-from . metric_thread import MetricThread
-from . parameters import PluginParameters
-from . plugin import Plugin
-from . plugin_manifest import PluginManifest
+from meterplugin.metric_item import MetricItem
+from meterplugin.parameters import PluginParameters
+from meterplugin.plugin import Plugin
+from meterplugin.plugin_manifest import PluginManifest
 
 __version__ = '0.2.0'

@@ -13,29 +13,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from meterplugin import CollectorDispatcher
 from meterplugin import MeasurementSinkStandardOut
 from meterplugin import EventSinkStandardOut
 import sys
-
-# def my_excepthook(type, value, traceback):
-#    sys.stderr.write("Unhandled error: {0}, {1}\n".format(type, value))
-
-# sys.excepthook = my_excepthook
 
 
 class PluginRunner(object):
     def __init__(self, module_name, class_name):
         self.module_name = module_name
         self.class_name = class_name
-        self.dispatcher = CollectorDispatcher()
 
     @staticmethod
     def usage():
+        """
+        Method to output the usage of plugin runner
+        :return: None
+        """
         sys.stderr.write("usage PluginRunner: <module name> <class name>\n")
         sys.exit(1)
 
     def run(self):
+        """
+        1) Loads the class derived from Plugin
+        2) Initializes and then runs Plugin
+        :return:
+        """
         module = __import__(self.module_name)
         class_ = getattr(module, self.class_name)
         meter_plugin = class_("")

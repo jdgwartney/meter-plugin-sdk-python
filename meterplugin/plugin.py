@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# Copyright 2014 Boundary, Inc.
+# Copyright 2016 BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,23 +14,19 @@
 
 
 from meterplugin import PluginParameters
-from meterplugin import Dispatcher
 import logging
 import sys
 
-logging.basicConfig(stream=sys.stderr,
-                    format='thread: %(threadName)s, file: %(filename)s, msg: %(message)s', level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
 class Plugin:
     
     def __init__(self, path):
         self.parameters = PluginParameters(path)
-        self.dispatcher = Dispatcher()
 
     def _initialize(self):
         self.parameters.load()
-        self.dispatcher.parameters = self.parameters
 
     def plugin_initialize(self):
         pass
@@ -39,7 +34,7 @@ class Plugin:
     def start(self):
         pass
 
-    def plugin_create_collector(self, parameters):
+    def create_collector(self, parameters):
         pass
 
     def run(self):

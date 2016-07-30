@@ -13,12 +13,25 @@
 # limitations under the License.
 
 from unittest import TestCase
+from cStringIO import StringIO
+import sys
 from meterplugin import MeasurementSinkStandardOut
+from tspapi import Measurement
 
 
 class TestConfiguration(TestCase):
 
+    def setUp(self):
+        self.old_stdout = sys.stdout
+        self.my_stdout = StringIO()
+        sys.stdout = self.my_stdout
+
+    def tearDown(self):
+        sys.stdout = self.old_stdout
+
     def test_measurement_standard_out_sink(self):
-        m = MeasurementStandardOutSink
-        self.assertEquals(len(self.conf.get_items()), 0, "Items not equal to zero")
+        sink = MeasurementSinkStandardOut()
+        m = Measurement(metric='FOO', value='100', source='BAR', timestamp=1500000000)
+        sink.send(m)
+        self.assertEqual('FOO 100 BAR 1500000000\n', self.my_stdout.getvalue())
 
