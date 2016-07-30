@@ -12,31 +12,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-from meterplugin import PluginParameters
 import logging
-import sys
+from meterplugin import Collector
 
 logger = logging.getLogger(__name__)
 
 
-class Plugin:
+class Plugin(object):
     
-    def __init__(self, path):
-        self.parameters = PluginParameters(path)
-
-    def _initialize(self):
-        self.parameters.load()
-
-    def plugin_initialize(self):
+    def __init__(self):
         pass
+
+    def initialize(self):
+        logger.debug('initialize()')
+
+    def parameters_loaded(self, parameters):
+        logger.debug('parameters_loaded()')
 
     def start(self):
-        pass
+        logger.debug('start()')
 
-    def create_collector(self, parameters):
-        pass
+    def create_collector(self, item):
+        logger.debug('create_collector()')
+        return Collector()
 
     def run(self):
-        self.dispatcher.run()
+        pass
 

@@ -12,16 +12,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+from __future__ import print_function
 
-from meterplugin import MeasurementSinkStandardOut
-from meterplugin import EventSinkStandardOut
+from meterplugin import PluginParameters
 import sys
+import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class PluginRunner(object):
     def __init__(self, module_name, class_name):
         self.module_name = module_name
         self.class_name = class_name
+        self.meter_plugin = None
+        self.parameters = PluginParameters()
+        self.collectors = []
 
     @staticmethod
     def usage():
@@ -32,23 +39,55 @@ class PluginRunner(object):
         sys.stderr.write("usage PluginRunner: <module name> <class name>\n")
         sys.exit(1)
 
+    def load_plugin(self):
+        sys.path.append(os.path.curdir)
+        module = __import__(self.module_name)
+        class_ = getattr(module, self.class_name)
+        meter_plugin = class_()
+        meter_plugin.initialize()
+        self.meter_plugin = meter_plugin
+
+    def create_collectors(self):
+        """
+        Generate the collectors from each of the parameter items
+        :return: None
+        """
+
+        for item in self.parameters.get_items():
+            collector = self.meter_plugin
+            self.collectors.append(collector)
+
+    def start_collectors(self):
+        """
+        Spawn a thread for each collector
+        :return:
+        """
+        for collector in self.collectors:
+            collector.start()
+
     def run(self):
         """
         1) Loads the class derived from Plugin
         2) Initializes and then runs Plugin
-        :return:
+        :return: None
         """
-        module = __import__(self.module_name)
-        class_ = getattr(module, self.class_name)
-        meter_plugin = class_("")
-        meter_plugin.initialize()
-        meter_plugin.load_configuration()
-        meter_plugin.set_measurement_output(MeasurementSinkStandardOut())
-        meter_plugin.set_event_output(EventSinkStandardOut())
+        self.parameters.load()
+        self.load_plugin()
+        self.meter_plugin.parameters_loaded(self.parameters)
+        self.meter_plugin.start()
+
+
+def main():
+    """
+    Entry point for runnning plugins
+    :return: None
+    """
+    print(sys.argv)
+    if len(sys.argv) != 3:
+        PluginRunner.usage()
+    plugin_runner = PluginRunner(module_name=sys.argv[1], class_name=sys.argv[2])
+    plugin_runner.run()
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        PluginRunner.usage()
-    plugin_runner = PluginRunner()
-    plugin_runner.run()
+    main()

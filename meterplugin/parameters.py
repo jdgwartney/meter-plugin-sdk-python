@@ -13,33 +13,21 @@
 # limitations under the License.
 
 import json
-from meterplugin import MetricItem
 from pprint import pprint
 import logging
-
-try:
-    import StringIO
-except ImportError:
-    from io import StringIO
+import StringIO
 
 logger = logging.getLogger(__name__)
 
 
 class PluginParameters:
 
-    def __init__(self, path):
-        self.config = []
-        self.path = path
-        self.json_data = None
-        self.data = None
-
-    def set_path(self, path):
+    def __init__(self, path='param.json'):
         """
-        Sets the path to the configuration file param.json
+        Initialize class members
         :param path:
-        :return:
         """
-        logger.debug('set_path(\"{0}\"', path)
+        self.config = None
         self.path = path
 
     def get_entry_count(self):
@@ -47,38 +35,27 @@ class PluginParameters:
         Returns the number of configuration items
         :return:
         """
-        count = 0
-        if self.data is not None:
-            count = len(self.data['items'])
-        return count
+        return len(self.config['items'])
 
     def load(self):
-        self.json_data = open(self.path)
-        self.data = json.load(self.json_data)
-        # Loop over the items and put into list
-        config_items = self.data['items']
-        for item in config_items:
-            self.handle_config_item(self.config, item)
-
-    def handle_config_item(self, config, item):
         """
-        Derived classes need to override this method to handle their specific
-        configuration items
-        :param config:
-        :param item:
+        Load the param.json file
         :return:
         """
-        metric_item = MetricItem()
-        metric_item.name = str(item['name'])
-        metric_item.polling_interval = int(item['pollInterval'])
-        metric_item.command = str(item['command'])
-        metric_item.debug = bool(item['debug'])
-        config.append(metric_item)
+        with open(self.path) as f:
+            data = json.load(f)
+            # Loop over the items and put into list
+            self.config = data
 
     def __str__(self):
+        """
+        Output the parameters as a string
+        :return:
+        """
         output = StringIO.StringIO()
-        pprint(self.data, stream=output)
+        pprint(self.config, stream=output)
         return output.getvalue()
 
     def get_items(self):
-        return self.config
+        return self.config['items'] if self.config is not None else None
+

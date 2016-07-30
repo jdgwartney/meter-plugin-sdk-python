@@ -13,8 +13,8 @@
 # limitations under the License.
 from meterplugin.exec_proc import ExecProc
 
-from meterplugin.event_sink import EventSink
-from meterplugin.event_sink import EventSinkStandardOut
+from meterplugin.event import EventSink
+from meterplugin.event import EventSinkStandardOut
 
 from meterplugin.measurement import MeasurementSink
 from meterplugin.measurement import MeasurementSinkAPI
@@ -22,9 +22,8 @@ from meterplugin.measurement import MeasurementSinkRPC
 from meterplugin.measurement import MeasurementSinkStandardOut
 
 from meterplugin.collector import Collector
-from meterplugin.plugin_runner import PluginRunner
-from meterplugin.metric_item import MetricItem
 from meterplugin.parameters import PluginParameters
+from meterplugin.plugin_runner import PluginRunner
 from meterplugin.plugin import Plugin
 from meterplugin.plugin_manifest import PluginManifest
 

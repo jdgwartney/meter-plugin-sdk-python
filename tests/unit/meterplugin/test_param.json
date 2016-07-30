@@ -2,26 +2,26 @@
   "items": [
     {
       "name": "Echo foo",
-      "pollInterval": "5",
+      "pollInterval": 5,
       "command": "scripts/random.sh 0 99",
       "debug": true
     },
     {
       "name": "Echo bar",
-      "pollInterval": "5",
+      "pollInterval": 5,
       "command": "scripts/random.sh 0 99",
       "debug": true
     },
     {
       "name": "Echo bar",
-      "pollInterval": "5",
+      "pollInterval": 5,
       "command": "scripts/random.sh 0 99",
       "debug": true
     }
   ,
     {
       "name": "Random",
-      "pollInterval": "10",
+      "pollInterval": 10,
       "command": "scripts/random.sh 0 99",
       "debug": true
     }

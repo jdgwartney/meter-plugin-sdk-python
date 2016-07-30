@@ -18,6 +18,8 @@
 import json
 import logging
 
+logger = logging.getLogger(__name__)
+
 """
 Reads and provides access to a plugin.json file the manifest of plugins.
 """
