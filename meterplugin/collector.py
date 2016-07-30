@@ -36,8 +36,9 @@ class Collector(Thread):
         Called by thread to perform collection of measurements
         :return:  None
         """
-        self.collect()
-        sleep(self.interval)
+        while True:
+            self.collect()
+            sleep(self.interval)
 
     def initialize(self):
         """
@@ -59,6 +60,5 @@ class Collector(Thread):
         Default collection method, sub-classes need to override to do anything useful
         :return: None
         """
-        print("Collecting measurements", file=stderr)
         logger.debug('collect()')
 
