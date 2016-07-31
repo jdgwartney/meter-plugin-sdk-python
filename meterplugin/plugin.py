@@ -29,8 +29,8 @@ class Plugin(object):
     def parameters_loaded(self, parameters):
         logger.debug('parameters_loaded()')
 
-    def start(self):
-        logger.debug('start()')
+    def starting(self):
+        logger.debug('starting()')
 
     def create_collector(self, item):
         logger.debug('create_collector()')
