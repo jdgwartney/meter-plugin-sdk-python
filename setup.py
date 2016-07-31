@@ -12,19 +12,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from setuptools import setup
+from distutils.core import setup
 from meterplugin import __version__
 
 setup(
     name='meterplugin',
     version=__version__,
-    url="http://github.io/boundary/meter-plugin-sdk-python",
+    url='https://github.com/boundary/meter-plugin-sdk-python',
     author='David Gwartney',
     author_email='david_gwartney@bmc.com',
     packages=['meterplugin', ],
     entry_points={
         'console_scripts': [
             'plugin-runner = meterplugin.plugin_runner:main',
+            'post-extract = meterplugin.post_extract:main',
         ],
     },
     package_data={'meterplugin': ['templates/*']},
