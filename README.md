@@ -40,3 +40,10 @@ collectors can be created by extending the default data collector
 - HTTP/HTTPS
 - Logfile
 - TCP/UDP Socket
+
+Example Plugins
+---------------
+
+Plugins that use the Meter Plugin SDK for Python:
+
+- [Random](https://github.com/boundary/meter-plugin-sdk-python-random)
