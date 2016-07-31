@@ -12,6 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 from meterplugin.exec_proc import ExecProc
 
 from meterplugin.bootstrap import Bootstrap
@@ -32,4 +33,4 @@ from meterplugin.plugin_runner import PluginRunner
 from meterplugin.plugin import Plugin
 from meterplugin.plugin_manifest import PluginManifest
 
-__version__ = '0.2.0'
+__version__ = '0.2.1'
