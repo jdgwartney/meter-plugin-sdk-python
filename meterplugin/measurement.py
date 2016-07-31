@@ -47,8 +47,8 @@ class MeasurementSinkStandardOut(MeasurementSink):
             measurement = '{metric} {value} {source} {timestamp}'.format(
                 metric=measurement.metric,
                 value=measurement.value,
-                source=measurement.source,
-                timestamp=measurement.timestamp)
+                source=measurement.source if measurement.source is not None else '',
+                timestamp=measurement.timestamp if measurement.timestamp is not None else '')
             print(measurement)
             logger.debug(measurement)
             stdout.flush()

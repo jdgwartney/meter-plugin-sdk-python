@@ -33,4 +33,4 @@ from meterplugin.plugin_runner import PluginRunner
 from meterplugin.plugin import Plugin
 from meterplugin.plugin_manifest import PluginManifest
 
-__version__ = '0.2.1'
+__version__ = '0.2.2'
