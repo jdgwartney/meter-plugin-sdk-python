@@ -16,7 +16,7 @@ from __future__ import print_function
 import logging
 from sys import stderr
 from time import sleep
-from threading import Thread
+from threading import Thread, Event
 from meterplugin import EventSinkStandardOut
 from meterplugin import MeasurementSinkStandardOut
 
@@ -30,13 +30,15 @@ class Collector(Thread):
         self.interval = interval / 1000.0
         self.event_output = EventSinkStandardOut()
         self.measurement_output = MeasurementSinkStandardOut()
+        self.run_event = Event()
+        self.run_event.set()
 
     def run(self):
         """
         Called by thread to perform collection of measurements
         :return:  None
         """
-        while True:
+        while self.run_event.is_set():
             self.collect()
             sleep(self.interval)
 
@@ -61,4 +63,7 @@ class Collector(Thread):
         :return: None
         """
         logger.debug('collect()')
+
+    def end(self):
+        self.run_event.clear()
 
