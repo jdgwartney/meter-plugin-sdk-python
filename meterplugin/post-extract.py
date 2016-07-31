@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #
 # Copyright 2016 BMC Software, Inc.
 #
@@ -13,20 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import unittest
-import sys
-import os
+# This script is called after the plugin files have been copied to the target host file system
+from meterplugin import Bootstrap
 
-from meterplugin import PluginRunner
-
-
-class TestPluginRunner(unittest.TestCase):
-
-    def setUp(self):
-        module_path = os.path.dirname(os.path.abspath(__file__))
-        sys.path.append(module_path)
-
-    @unittest.skip("skipping test_constructor()")
-    def test_constructor(self):
-        plugin_runner = PluginRunner('test_plugin', 'TestPlugin')
-        plugin_runner.run()
+if __name__ == "__main__":
+    bootstrap = Bootstrap()
+    bootstrap.setup()
