@@ -12,13 +12,15 @@ Measurement Transports
 The SDK supports sending measurements to Pulse via 3 different methods:
 
 - Standard Out
-- Meter RPC
-- Measurement API
+- Meter RPC (Future)
+- Measurement API (Future)
 
 ### Standard Out
 
-Plugin writes to standard out which is read by the Plugin Manager which then forwards to the meter via Meter RPC API, which then sends to Pulse.
-
+Plugin writes to standard out which is read by the Plugin Manager
+which then forwards to the meter via Meter RPC API, which then sends to
+Pulse.
+                                                                     
 ### Meter RPC
 
 Plugin writes to Meter RPC channel which then sends to Pulse.
@@ -27,10 +29,11 @@ Plugin writes to Meter RPC channel which then sends to Pulse.
 
 Plugin writes to Pulse Measurement REST API directly sending to Pulse
 
-DataSources
------------
+Data Collectors
+---------------
 
-The framework supports the following data sources, custom data sources can be created by extending the default data source
+The framework supports the following data collectors, custom data
+collectors can be created by extending the default data collector
 
 - Database
 - Exec

@@ -1,6 +1,5 @@
-#!/usr/bin/env python
 #
-# Copyright 2015 BMC Software, Inc.
+# Copyright 2016 BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +15,7 @@
 #
 
 from unittest import TestCase
-from meter_plugin_sdk import PluginManifest
+from meterplugin import PluginManifest
 import os.path
 
 
@@ -33,9 +32,8 @@ class TestPluginManifest(TestCase):
         pm.load()
 
     def test_check_data_members(self):
-        self.assertEqual('Boundary README Test', self.pm.name,
-                         'Check for name')
-        self.assertEqual('Example plugin.json for testing README.md generation', self.pm.description, 'Check for description')
+        self.assertEqual('TrueSight Pulse Test', self.pm.name)
+        self.assertEqual('Example plugin.json for testing', self.pm.description)
         self.assertEqual('2.0', self.pm.version)
         self.assertEqual('meter', self.pm.tags)
         self.assertEqual('icon.png', self.pm.icon)
@@ -44,7 +42,7 @@ class TestPluginManifest(TestCase):
         self.assertEqual('npm install', self.pm.post_extract)
         self.assertEqual('', self.pm.post_extract_lua)
         self.assertEqual('node_modules', self.pm.ignore)
-        self.assertEqual(['BOUNDARY_README_METRIC'], self.pm.metrics)
+        self.assertEqual(['PULSE_TEST_METRIC'], self.pm.metrics)
 
     def test_check_for_param_array(self):
 

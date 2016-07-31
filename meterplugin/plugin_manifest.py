@@ -18,6 +18,8 @@
 import json
 import logging
 
+logger = logging.getLogger(__name__)
+
 """
 Reads and provides access to a plugin.json file the manifest of plugins.
 """
@@ -84,7 +86,6 @@ class PluginManifest():
 
     @property
     def name(self):
-        logging.debug(self.manifest)
         return self.manifest['name']
 
     @property

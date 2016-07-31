@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-# Copyright 2014 Boundary, Inc.
+#
+# Copyright 2016 BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,14 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-from meter_plugin_sdk import Plugin
+# This script is called after the plugin files have been copied to the target host file system
+from meterplugin import Bootstrap
 
 
 def main():
-    plugin = Plugin("param.json")
-    plugin.initialize()
-    plugin.run()
-    
+    bootstrap = Bootstrap()
+    bootstrap.setup()
+
 if __name__ == "__main__":
-    main() 
+    main()

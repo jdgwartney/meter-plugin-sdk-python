@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# Copyright 2014 Boundary, Inc.
+# Copyright 2016 BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,26 +12,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-from meter_plugin_sdk import Configuration
-from meter_plugin_sdk import Dispatcher
 import logging
-import sys
+from meterplugin import Collector
 
-logging.basicConfig(stream=sys.stderr,
-                    format='thread: %(threadName)s, file: %(filename)s, msg: %(message)s', level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 
-class Plugin:
+class Plugin(object):
     
-    def __init__(self,path):
-        self.config = Configuration(path)
-        self.dispatcher = Dispatcher()
-        
+    def __init__(self):
+        pass
+
     def initialize(self):
-        self.config.load()
-        self.dispatcher.setConfig(self.config)
-    
+        logger.debug('initialize()')
+
+    def parameters_loaded(self, parameters):
+        logger.debug('parameters_loaded()')
+
+    def starting(self):
+        logger.debug('starting()')
+
+    def create_collector(self, item):
+        logger.debug('create_collector()')
+        return Collector()
+
     def run(self):
-        self.dispatcher.run()
+        pass
 

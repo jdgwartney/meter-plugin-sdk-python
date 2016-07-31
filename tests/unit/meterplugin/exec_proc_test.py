@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# Copyright 2014 Boundary, Inc.
+# Copyright 2016 BMC Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +13,7 @@
 # limitations under the License.
 
 import unittest
-from meter_plugin_sdk import ExecProc
+from meterplugin import ExecProc
 
 
 class TestExecProc(unittest.TestCase):
