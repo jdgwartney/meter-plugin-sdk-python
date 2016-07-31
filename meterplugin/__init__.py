@@ -16,6 +16,8 @@ from meterplugin.exec_proc import ExecProc
 from meterplugin.event import EventSink
 from meterplugin.event import EventSinkStandardOut
 
+from tspapi import Measurement
+
 from meterplugin.measurement import MeasurementSink
 from meterplugin.measurement import MeasurementSinkAPI
 from meterplugin.measurement import MeasurementSinkRPC
