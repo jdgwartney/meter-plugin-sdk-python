@@ -32,6 +32,7 @@ setup(
     license='LICENSE',
     description='TrueSight Pulse Meter Plugin SDK for Python',
     long_description=open('README.txt').read(),
-    install_requires=['tinyrpc', 'tspapi',],
-    setup_requires=['tinyrpc', 'tspapi', ],
+    install_requires=[
+        'tinyrpc >= 0.5',
+	'tspapi >= 0.3.6',],
 )
