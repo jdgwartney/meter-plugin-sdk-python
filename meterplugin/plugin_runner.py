@@ -98,8 +98,8 @@ class PluginRunner(object):
 
         if args.log_level is not None:
             logging.basicConfig(stream=sys.stderr,
-                            format='[%(levelname)s] (%(threadName)-s) %(message)s',
-                            level=self.levels[args.log_level])
+                                format='[%(levelname)s] (%(threadName)-s) %(message)s',
+                                level=self.levels[args.log_level])
 
         self.class_name = args.class_name
         self.module_name = args.module_name

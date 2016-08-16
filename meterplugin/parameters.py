@@ -20,6 +20,30 @@ import StringIO
 logger = logging.getLogger(__name__)
 
 
+class PluginParameterItem(object):
+
+    def __init__(self):
+        self._items = {}
+
+    def __getitem__(self, key):
+        """
+        Handle getting of item but return None instead of a key error
+        :param key:
+        :return:
+        """
+        value = None
+        try:
+            value = self._items[key]
+        except KeyError:
+            logger.debug("Parameter with key '{0}' not found returning None".format(key))
+
+        return value
+
+    def __setitem__(self, key, value):
+        logger.debug("Setting parameter with key '{0}' and value '{1}'")
+        self._items[key] = value
+
+
 class PluginParameters:
 
     def __init__(self, path='param.json'):

@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from distutils.core import setup
-from meterplugin import __version__
+
 
 setup(
     name='meterplugin',
-    version=__version__,
+    version='0.2.3',
     url='https://github.com/boundary/meter-plugin-sdk-python',
     author='David Gwartney',
     author_email='david_gwartney@bmc.com',
